@@ -1,0 +1,13 @@
+package com.network2_b;
+
+import java.util.List;
+import java.util.Vector;
+
+public class RoomSimulation {
+
+	public static void main(String[] args) {
+		List<Room> roomList = new Vector<>();
+		
+	}
+
+}

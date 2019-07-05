@@ -1,0 +1,24 @@
+package com.network_1;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Login extends JFrame {
+	//선언부
+	String imgPath = "C:\\workspace_java\\dev_java\\src\\images\\";
+	//생성자
+	
+	//내부클래스 추가하기 - JPanel이미지를 입히기
+	class myPanel extends JPanel{
+		
+	}
+	//화면처리부
+	public void intiDisplay() {
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

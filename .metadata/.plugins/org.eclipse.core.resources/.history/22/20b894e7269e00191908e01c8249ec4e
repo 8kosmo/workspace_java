@@ -1,0 +1,232 @@
+package com.network2_c;
+
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.StringTokenizer;
+
+public class TalkServerThread extends Thread {
+	TalkServer ts 			= null;
+	ObjectOutputStream oos 	= null;
+	ObjectInputStream ois 	= null;
+	String nickName 		= null;//사용자의 닉네임 담김
+	String g_title 			= null;//대기 이거나 톡방명
+	int g_current 			= 0;//톡방에 참여자 수
+	
+	public TalkServerThread(TalkServer ts) {
+		this.ts = ts;
+		try {
+			oos = new ObjectOutputStream(ts.client.getOutputStream());
+			ois = new ObjectInputStream(ts.client.getInputStream());
+			String msg = (String)ois.readObject();
+			ts.jta_log.append(msg+"\n");
+			//자동으로 스크롤바 이동시켜주기
+			ts.jta_log.setCaretPosition(ts.jta_log.getDocument().getLength());
+			StringTokenizer st = null;
+			if(msg!=null) {
+				st = new StringTokenizer(msg,Protocol.seperator);
+			}
+			if(st.hasMoreTokens()) {
+				st.nextToken();//100
+				nickName = st.nextToken();//닉네임담기
+				g_title = st.nextToken();//톡방명
+			}
+			//나 이전에 들어와 있는 친구들에게 메시지 전송하기
+			for(TalkServerThread tst:ts.globalList) {
+				String currentName = tst.nickName;
+				String currentState = tst.g_title;
+				this.send(Protocol.WAIT
+						+Protocol.seperator+currentName
+						+Protocol.seperator+currentState
+						);
+			}
+			/*****************톡방목록처리****************/
+			/*
+			 * 기존에 입장한 친구들은 단톡명을 받게 되지만 추가로 입장한 친구는 
+			 * 단톡명 정보를 받지 못하고 있다.
+			 * 이 경우를 고려하여 ROOM_LIST를 추가함
+			 */
+			for(int i=0;i<ts.roomList.size();i++) {
+				Room room = ts.roomList.get(i);
+				String title = room.title;
+				g_title = title;
+				int current = 0;
+				if(room.userList!=null && room.userList.size()!=0) {
+					current = room.userList.size();
+				}
+				g_current = current;
+				this.send(Protocol.ROOM_LIST
+						+Protocol.seperator+g_title
+						+Protocol.seperator+g_current
+						);
+			}
+			/*****************************************/
+			//입장한 내 스레드 추가하기
+			ts.globalList.add(this);
+			//현재 서버에 접속한 모든 사람들에게 메시지 전송하기
+			this.broadCasting(msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//서버에 접속한 모든 사용자들에게 메세지를 전송 처리함.
+	public void broadCasting(String msg) {
+		//동기화 처리 추가하기 - 절대 인터셉트 당하지 않음
+		synchronized(this) {
+			for(TalkServerThread tst:ts.globalList) {
+				tst.send(msg);
+			}
+		}
+	}
+	//서버에 접속한 사용자 중에서 톡방에 참여한 사용자들에게 메세지를 전송 처리함.
+	public void roomCasting(String msg) {//200|누가|누구에게|오늘 스터디할까?
+		//roomList에는 방 정보를 담는 Room클래스의 주소번지 있음.
+		for(int i=0;i<ts.roomList.size();i++) {//톡방의 수만큼 반복
+			Room room = ts.roomList.get(i);//Room클래스 하나를 꺼냄
+			if(g_title.equals(room.title)) {//같은 방인지 체크함.
+				for(int j=0;j<room.userList.size();j++) {//스레드 수만큼 반복
+					TalkServerThread tst = room.userList.get(j);
+					try {
+						//그 방에 있는 스레드에게만 메세지를 전송
+						tst.send(msg);
+					} catch (Exception e) {
+						room.userList.remove(j--);
+					}
+				}//end of inner for
+				break;
+			}
+		}//end of outer for
+	}// end of broadCasting
+	public void send(String msg) {
+		try {
+			oos.writeObject(msg);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	//run메소드 안에서는 무엇을 구현해야 되는걸까? 듣기
+	public void run() {
+		boolean isStop = false;
+		try {
+			run_start://break run_start;
+				while(!isStop) {
+					String msg = (String)ois.readObject();
+					ts.jta_log.append(msg+"\n");//200|나신입|주말에 뭐해?
+					ts.jta_log.setCaretPosition(ts.jta_log.getDocument().getLength());
+					int protocol = 0;
+					StringTokenizer st = null;
+					if(msg!=null) {
+						st = new StringTokenizer(msg,"|");
+						protocol = Integer.parseInt(st.nextToken());
+					}
+					switch(protocol) {
+					case Protocol.ROOM_CREATE:{
+						//사용자가 추가한 단톡명을 받기
+						String roomTitle = st.nextToken();
+						//단톡 추가시 디폴트는 0이고 그 값을 담기
+						String currentNum = st.nextToken();
+						//단톡을 관리하는 Vector인 roomList에 추가
+						//먼저 Room객체 생성할 때 생성자를 통해서 방명과 인원수를 초기화
+						Room room = new Room(roomTitle, Integer.parseInt(currentNum));
+						//위에서 생성한 객체를 Vector 담기
+						ts.roomList.add(room);
+						this.broadCasting(Protocol.ROOM_CREATE
+										+Protocol.seperator+roomTitle
+										+Protocol.seperator+currentNum
+										);
+					}break;
+					case Protocol.ROOM_IN:{
+					//ROOM_INLIST
+						String roomTitle = st.nextToken();
+						String nickName = st.nextToken();
+						for(int i=0;i<ts.roomList.size();i++) {
+							Room room = ts.roomList.get(i);
+							if(roomTitle.equals(room.title)) {
+								g_title = roomTitle;
+								g_current = room.current+1;
+								//인원수 업데이트
+								room.setCurrent(g_current);
+								room.userList.add(this);//this는 사용자 스레드
+								room.nameList.add(nickName);
+							}
+						}
+						for(int i=0;i<ts.roomList.size();i++) {
+							Room room = ts.roomList.get(i);
+							String title = room.title;
+							g_title = title;
+							int current = 0;
+							if(room.userList!=null && room.userList.size()!=0) {
+								current = room.userList.size();
+							}
+							//단톡에 인원수 만큼 조회한다.
+							for(int j=0;j<room.nameList.size();j++) {
+								//닉네임과 다른 이름 중 단톡명이 같은 경우에만 클라이언트로 전송함.
+								if(!nickName.equals(room.nameList.get(j))){
+									//클라이언트에서 전송된 단톡명과 room에 있는 단톡명을 비교함.
+									if(roomTitle.equals(room.title)) {
+										TalkServerThread tst = room.userList.get(j);
+										tst.send(Protocol.ROOM_INLIST
+												+Protocol.seperator+g_title
+												+Protocol.seperator+g_current
+												+Protocol.seperator+nickName
+												);
+									}
+								}
+							}
+						}
+					//ROOM_IN
+						broadCasting(Protocol.ROOM_IN
+								+Protocol.seperator+g_title
+								+Protocol.seperator+g_current
+								+Protocol.seperator+this.nickName
+								);
+					}break;
+					case Protocol.MESSAGE:{
+						String nickName = st.nextToken();
+						String message = st.nextToken();
+						String imgChoice = "";
+						while(st.hasMoreTokens()) {
+							imgChoice = st.nextToken();
+						}
+						this.broadCasting(Protocol.MESSAGE
+										 +Protocol.seperator+nickName
+										 +Protocol.seperator+message
+										 +Protocol.seperator+imgChoice
+										 );
+					}break;
+                    case Protocol.WHISPER:{
+                    	String nickName = st.nextToken();
+						String otherName = st.nextToken();
+						String msg1 = st.nextToken();
+						for(TalkServerThread tst:ts.globalList) {
+							if(otherName.equals(tst.nickName)) {//상대에게 보내는것
+								tst.send(Protocol.WHISPER+Protocol.seperator+nickName
+										+Protocol.seperator+otherName+Protocol.seperator+msg1);
+								break;
+							}
+						}
+						//내가 한말을 내게 보내는 것
+						this.send(Protocol.WHISPER+Protocol.seperator+nickName+
+								Protocol.seperator+otherName+Protocol.seperator+msg1);
+					}break;
+                    case Protocol.CHANGE:{
+                    	String nickName = st.nextToken();
+                    	String afterName = st.nextToken();
+                    	String msg1 = st.nextToken();
+                    	this.nickName = afterName;
+                    	broadCasting(Protocol.CHANGE
+								 +Protocol.seperator+nickName
+								 +Protocol.seperator+afterName
+								 +Protocol.seperator+msg1
+								 );
+                    	
+                    }break;
+                    case Protocol.ROOM_OUT:{
+						
+					}break;
+					}
+				}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+}

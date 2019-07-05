@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value="JOption"/>
+		<list key="findhistory">
+			<item value="joption"/>
+			<item value="setSelectedIndex"/>
+			<item value="run"/>
+			<item value="settitle"/>
+			<item value="tc2.jtp_display"/>
+			<item value="tc2.dtm_name"/>
+			<item value=".imo"/>
+			<item value="tc2.sd_display"/>
+			<item value="tc2."/>
+			<item value="mr"/>
+			<item value="nr"/>
+			<item value="MessageRoom"/>
+			<item value="TalkClientVer2"/>
+			<item value="tc2"/>
+			<item value="tc."/>
+		</list>
+		<list key="replacehistory">
+			<item value=""/>
+			<item value="tc2.mr.jtp_display"/>
+			<item value="tc2.mr.dtm_name"/>
+			<item value=".mr.imo"/>
+			<item value="tc2.mr.sd_display"/>
+			<item value="mr"/>
+			<item value="MessageRoom"/>
+			<item value="tc2."/>
+			<item value="tc2"/>
+			<item value="com.networkk1"/>
+			<item value="jtp_display"/>
+			<item value="jp_second"/>
+			<item value="jp_first"/>
+			<item value="dvd"/>
+			<item value="txtID"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1422"/>
+		<item key="DIALOG_Y_ORIGIN" value="322"/>
+		<item key="DIALOG_WIDTH" value="288"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="572"/>
+		<item key="DIALOG_Y_ORIGIN" value="399"/>
+	</section>
+</section>

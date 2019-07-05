@@ -1,0 +1,13 @@
+package com.network_1;
+
+public class ChatMemberVO {
+	  private int mem_num          = 0;
+	  private String mem_id        = "";
+	  private String mem_pw        = "";
+	  private String mem_name      = "";
+	  private String mem_nick      = "";
+	  private String mem_email     = "";
+	  private String mem_hp        = "";
+	  private String mem_birth     = "";
+	  private String reg_date      = "";
+}
