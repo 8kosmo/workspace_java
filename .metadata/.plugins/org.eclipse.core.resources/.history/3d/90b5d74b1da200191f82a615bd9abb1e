@@ -1,0 +1,16 @@
+package json;
+
+import com.google.gson.JsonParser;
+
+public class JsonTest1 {
+
+	public static void main(String[] args) {
+		String key = "{\"key\":\"abcd1234\"}";
+		System.out.println(key);
+		//위 문자열은 json포맷이 아니다.
+		//왜냐하면 바깥쪽에 대괄호가 없으니깐
+		//그래서 Gson으로 파싱이 안됨.
+		JsonParser jsonPar = new JsonParser();
+	}
+
+}

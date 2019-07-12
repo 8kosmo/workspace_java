@@ -1,0 +1,33 @@
+package UI_swing;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+public class SungJukApp extends	JFrame {
+	//선언부
+	JLabel 		jlb_inwon 	=	new JLabel("인원수",JLabel.RIGHT);
+	JLabel 		jlb_myeong 	=	new JLabel("명",JLabel.LEFT);
+	JTextField 	jtf_inwon 	=	new JTextField(10);
+	JButton 	jbtn_add 	=	new JButton("추가");
+	Object		data[][]	=	new Object[0][7];
+	String		cols[]		=	{"이름","JAVA","Oracle","JSP","총점","평균","등수"};
+	DefaultTableModel dtm_list 	=	null;
+	JTable 			jtb_list 	=	null;
+	JScrollPane 	jsp_list	=	null;
+	//생성자
+	
+	//화면처리구현
+	public void initDisplay(){
+		
+	}
+	//메인메소드
+	public static void main(String[] args) {
+		
+	}
+
+}

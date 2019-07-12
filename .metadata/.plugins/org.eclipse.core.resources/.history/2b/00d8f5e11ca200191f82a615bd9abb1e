@@ -1,0 +1,10 @@
+package json;
+
+public class JsonTest1 {
+
+	public static void main(String[] args) {
+		String key = "{\"key\":\"abcd1234\"}";
+		System.out.println(key);
+	}
+
+}

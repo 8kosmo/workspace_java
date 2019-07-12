@@ -1,0 +1,22 @@
+package com.ch15;
+
+import java.io.FileReader;
+import java.util.Scanner;
+
+/*
+ * oos.writeObject();
+ * dos.writeDouble();
+ * is.write();
+ */
+public class ScannerReadable {
+	
+	public static void main (String[] args) {
+		Scanner scan = null;
+		FileReader fr = null;
+		try {
+			fr = new FileReader(".\\src\\com\\ch15\\scan.txt");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+}

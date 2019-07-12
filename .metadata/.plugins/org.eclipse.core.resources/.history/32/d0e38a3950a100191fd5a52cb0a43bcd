@@ -1,0 +1,19 @@
+package com.ch15;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+
+public class FileCopy {
+
+	public static void main(String[] args) {
+		FileReader fr = null;
+		FileWriter fw = null;
+		try {
+			fr = new FileReader(".\\src\\com\\ch15\\scan.txt");
+			fw = new FileWriter(".\\src\\com\\ch15\\scan_copy.txt");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+}

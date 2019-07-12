@@ -1,0 +1,19 @@
+package UI_swing;
+
+import javax.swing.JFrame;
+
+public class SungJukApp extends	JFrame {
+	//선언부
+	
+	//생성자
+	
+	//화면처리구현
+	public void initDisplay(){
+		
+	}
+	//메인메소드
+	public static void main(String[] args) {
+		
+	}
+
+}

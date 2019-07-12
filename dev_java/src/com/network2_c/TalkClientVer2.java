@@ -36,13 +36,13 @@ public class TalkClientVer2 extends JFrame {
 		this.getContentPane().add(tp,null);
 		this.setSize(655, 585);
 		this.setVisible(true);
+		this.setTitle(nickName+"님의 대화창");
 	}//end of initDisplay()
 /*
  * 소켓을 생성하기
  * 말하기와 듣기 필요한 객체 생성하기
  */
 	public void connect_process() {
-		this.setTitle(nickName+"님의 대화창");
 		//통신은 지연이 발생할 수 있으므로 항상 예외처리 할 것.
 		try {
 			mySocket = new Socket(ip,port);

@@ -1,0 +1,14 @@
+package UI_swing;
+
+import javax.swing.JFrame;
+
+public class SungJukApp extends	JFrame {
+	public void initDisplay(){
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,7 @@
+package UI_swing;
+
+import javax.swing.JInternalFrame;
+
+public class ExcelFrame extends JInternalFrame {
+
+}

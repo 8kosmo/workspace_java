@@ -6,25 +6,31 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="JOption"/>
+		<item key="selection" value="jlb_inwon"/>
 		<list key="findhistory">
+			<item value="jlb_inwon"/>
+			<item value="jth"/>
+			<item value="1"/>
+			<item value="updat"/>
+			<item value="up"/>
+			<item value="system"/>
+			<item value="out"/>
+			<item value="simple\"/>
+			<item value="simple"/>
+			<item value="jbtn_exit"/>
 			<item value="joption"/>
 			<item value="setSelectedIndex"/>
 			<item value="run"/>
 			<item value="settitle"/>
 			<item value="tc2.jtp_display"/>
-			<item value="tc2.dtm_name"/>
-			<item value=".imo"/>
-			<item value="tc2.sd_display"/>
-			<item value="tc2."/>
-			<item value="mr"/>
-			<item value="nr"/>
-			<item value="MessageRoom"/>
-			<item value="TalkClientVer2"/>
-			<item value="tc2"/>
-			<item value="tc."/>
 		</list>
 		<list key="replacehistory">
+			<item value="7"/>
+			<item value="6"/>
+			<item value="5"/>
+			<item value="4"/>
+			<item value="3"/>
+			<item value="2"/>
 			<item value=""/>
 			<item value="tc2.mr.jtp_display"/>
 			<item value="tc2.mr.dtm_name"/>
@@ -34,12 +40,6 @@
 			<item value="MessageRoom"/>
 			<item value="tc2."/>
 			<item value="tc2"/>
-			<item value="com.networkk1"/>
-			<item value="jtp_display"/>
-			<item value="jp_second"/>
-			<item value="jp_first"/>
-			<item value="dvd"/>
-			<item value="txtID"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

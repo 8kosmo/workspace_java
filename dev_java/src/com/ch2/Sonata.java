@@ -1,6 +1,8 @@
 package com.ch2;
 
-public class Sonata {
+import com.ch9.Car;
+
+public class Sonata extends Car{
 	int wheelNum = 4;
 	int speed = 0;
 	String carColor = "빨강";
@@ -16,6 +18,16 @@ public class Sonata {
 		System.out.println(hiscar.wheelNum);
 		System.out.println("지우의 차는 "+hiscar.carColor);
 		hiscar.move(100);
+	}
+	@Override
+	public void display() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void Unit() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

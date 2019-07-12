@@ -1,0 +1,57 @@
+package UI_swing;
+
+import java.awt.Color;
+
+import javax.swing.DefaultCellEditor;
+import javax.swing.DefaultListSelectionModel;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+
+public class ExcelFrame extends JInternalFrame {
+	DefaultTableModel dtm 			= new DefaultTableModel(100,27);
+	DefaultTableColumnModel dtcm 	= new DefaultTableColumnModel();
+	DefaultListSelectionModel dlsm	= new DefaultListSelectionModel();
+	JTable jt = new JTable(dtm,dtcm,dlsm);
+	JScrollPane jsp = new JScrollPane(jt);
+	TableColumn[] tc = new TableColumn[27];
+	DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+	JTextField jtf = new JTextField();
+	DefaultCellEditor dce = new DefaultCellEditor(jtf);
+	JTableHeader jth = new JTableHeader();
+	public ExcelFrame(String title, boolean a,boolean b,boolean c,boolean d) {
+		super(title,true,true,true,true);
+		this.initDisplay();
+		this.setTitle(title);
+		this.setSize(300, 200);
+		this.setVisible(true);
+	}
+	public void initDisplay() {
+		tc[0] = new TableColumn(0,75,dtcr,dce);
+		tc[0].setHeaderValue("rownum");
+		dtcr.setBackground(Color.LIGHT_GRAY);
+		//헤더에 출력되는 문자열 중앙정렬
+		dtcr.setHorizontalAlignment(JLabel.CENTER);
+		dtcm.addColumn(tc[0]);
+		//가로줄의 맨상단 헤더값 설정
+		for(int i=1;i<27;i++) {
+			tc[i] = new TableColumn(i,75);
+			//아스키코드표에 의하면 10진수 65 알파벳 A이므로
+			tc[i].setHeaderValue((char)(i+64)+"");
+			dtcm.addColumn(tc[i]);
+		}
+		//헤더영역
+		jth = new JTableHeader(dtcm);
+		//컬럼이 이동할 수 없도록 고정하기
+		jth.setReorderingAllowed(false);
+		jt.setTableHeader(jth);
+		
+	}//end of initDisplay()
+}

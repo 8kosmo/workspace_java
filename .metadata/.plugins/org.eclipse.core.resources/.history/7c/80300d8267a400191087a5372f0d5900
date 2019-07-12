@@ -1,0 +1,12 @@
+package UI_swing;
+
+public class SungJukApp {
+	public void initDisplay(){
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,52 @@
+package UI_swing;
+
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JRootPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+class InnerFrame extends JInternalFrame {
+	String data[][]= {
+			 {"1_1","1_2","1_3"}
+			,{"2_1","2_2","2_3"}
+			,{"3_1","3_2","3_3"}
+	};
+	String cols[]= {"1반","2반","3반"};
+	JTable jt = new JTable();
+	JScrollPane jsp = new JScrollPane(jt);
+	public InnerFrame(String title,boolean a,boolean b,boolean c,boolean d) {
+		this.setTitle(title);
+		this.setSize(300, 200);
+		this.setVisible(true);
+	}
+}//end of InnerFrame 
+public class JInternalFrameTest extends JFrame implements ActionListener {
+	JRootPane jrp = this.getRootPane();//JMenuBar관련 api
+	Container cp = this.getContentPane();//swing component붙임
+	JDesktopPane jdp = new JDesktopPane();
+	JButton jbtn_new = new JButton("새창");
+	public void initDisplay() {
+		jbtn_new.addActionListener(this);
+		cp.add("South",jbtn_new);
+		cp.add("Center",jdp);//센터에 들어올 내부 프레임 정보 InnerFrame
+		this.setSize(700, 400);
+	}//end of initDisplay()
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public static void main(String[] args) {
+		JInternalFrameTest jif = new JInternalFrameTest();
+		jif.initDisplay();
+	}
+
+}

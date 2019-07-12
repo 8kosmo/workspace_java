@@ -1,0 +1,62 @@
+package UI_swing;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+public class SungJukApp extends	JFrame implements ActionListener {
+	//선언부
+	//Layout 종류 : BorderLayout, FlowLayout, CardLayout, GridLayout, GridBagLayout,
+	//BoxLayout, 
+	JPanel		jp_north	=	new JPanel();
+	JLabel 		jlb_inwon 	=	new JLabel("인원수",JLabel.RIGHT);
+	JLabel 		jlb_myeong 	=	new JLabel("명",JLabel.LEFT);
+	JTextField 	jtf_inwon 	=	new JTextField(10);
+	JButton 	jbtn_add 	=	new JButton("추가");
+	Object		data[][]	=	new Object[0][7];
+	String		cols[]		=	{"이름","JAVA","Oracle","JSP","총점","평균","등수"};
+	DefaultTableModel dtm_list 	=	null;
+	JTable 			jtb_list 	=	null;
+	JScrollPane 	jsp_list	=	null;
+	//생성자
+	/*
+	 * 문제 제기
+	 * 화면을 처리하는 메소드 호출을 생성자에서 할 수도 있고
+	 * 메인 메소드에서 할 수도 있다.
+	 * 둘의 차이점에 대해 생각해보자.
+	 */
+	public SungJukApp() {
+		
+	}
+	//화면처리구현
+	public void initDisplay(){
+		jp_north.add(jlb_inwon);
+		jp_north.add(jtf_inwon);
+		jp_north.add(jlb_myeong);
+		jp_north.add(jbtn_add);
+		this.add("North",jp_north);
+		//this.setResizable(false);
+		this.setSize(300, 250);
+		this.setVisible(true);
+		
+	}
+	//메인메소드
+	public static void main(String[] args) {
+		SungJukApp sja = new SungJukApp();
+		sja.initDisplay();
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

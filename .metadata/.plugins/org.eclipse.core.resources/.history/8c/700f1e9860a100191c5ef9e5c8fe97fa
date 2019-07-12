@@ -1,0 +1,31 @@
+package com.ch15;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
+public class MyEditor extends JFrame {
+	//선언부
+	
+	//생성자
+	public MyEditor() {
+		
+	}
+	//화면처리부
+	private void initDisplay() {
+		//Look & Feel 설정
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+			SwingUtilities.updateComponentTreeUI(this);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		this.setSize(500, 300);
+		this.setVisible(true);
+	}//end of initDisplay()
+	//메인메소드
+	public static void main(String[] args) {
+		MyEditor myEditor = new MyEditor();
+		myEditor.initDisplay();
+	}
+}

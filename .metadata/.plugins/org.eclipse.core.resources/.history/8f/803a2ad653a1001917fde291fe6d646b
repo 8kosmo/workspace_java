@@ -1,0 +1,19 @@
+package com.ch15;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+
+public class ViewURL {
+	ViewURL(String url){
+		URL myURL = null;
+		URLConnection myCon = null;
+		InputStream is = null;//추상 클래스
+		BufferedReader br = null;//필터 스트림 클래스
+	}
+	public static void main(String[] args) {
+		new ViewURL("http://localhost:8000/ajax/multiMarkergoogleMap2.html");
+	}
+
+}

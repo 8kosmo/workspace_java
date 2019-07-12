@@ -1,0 +1,24 @@
+package ui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class JInternalFrameTest implements ActionListener {
+	public void initDisplay() {
+		
+	}
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+class InnerFrame {
+	
+}
