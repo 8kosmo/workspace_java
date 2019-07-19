@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="jlb_inwon"/>
+		<item key="selection" value="jth_member"/>
 		<list key="findhistory">
+			<item value="jth_member"/>
+			<item value="jtf_msg"/>
 			<item value="jlb_inwon"/>
 			<item value="jth"/>
 			<item value="1"/>
@@ -21,8 +23,6 @@
 			<item value="joption"/>
 			<item value="setSelectedIndex"/>
 			<item value="run"/>
-			<item value="settitle"/>
-			<item value="tc2.jtp_display"/>
 		</list>
 		<list key="replacehistory">
 			<item value="7"/>
@@ -43,7 +43,7 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1422"/>
+		<item key="DIALOG_X_ORIGIN" value="763"/>
 		<item key="DIALOG_Y_ORIGIN" value="322"/>
 		<item key="DIALOG_WIDTH" value="288"/>
 		<item key="DIALOG_HEIGHT" value="391"/>

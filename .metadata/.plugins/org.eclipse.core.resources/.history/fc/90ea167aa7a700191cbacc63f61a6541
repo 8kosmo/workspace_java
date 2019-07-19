@@ -32,9 +32,9 @@ public class TalkClientVer2 extends JFrame {
 	}
 	public void initDisplay() {
 		this.getContentPane().setLayout(null);
-		tp.addTab("대기실", wr);
+		tp.addTab("", (new ImageIcon(imgPath+"login.png")), wr);
 		tp.addTab("단톡방", mr);
-		tp.setBounds(5, 4, 627, 530);
+		tp.setBounds(0, 0, 627, 530);
 		this.getContentPane().add(tp,null);
 		this.setSize(655, 585);
 		this.setVisible(true);
